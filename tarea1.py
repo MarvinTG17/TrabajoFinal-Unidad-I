@@ -1,3 +1,5 @@
+from funciones_archivo1 import *
+
 def menu_principal():
     print("\n--------MENU DE BIENVENIDA--------")
     print("\nEscoga un numero del menu:")
@@ -16,3 +18,11 @@ def menu_principal():
     opcion = input("\nIngresar la opcion de su preferencia: ")
 
     return opcion
+
+while True:
+    op = menu_principal()
+
+    if op == "1":
+        #print("Leer archivo")
+        Libro.leerLibros()
+        break
