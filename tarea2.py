@@ -12,13 +12,13 @@ def obtenerPokemonesXGeneracion(generacion):
     listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
     print(listaPokemones)
 
-"""
+
 
 generacion = int(input("Ingresa numero de geme: "))
 print("Eligio la generacion : ", str(generacion))
 
 obtenerPokemonesXGeneracion(generacion)
-"""
+
 
 
 # PREGUNTA 2
@@ -27,7 +27,7 @@ obtenerPokemonesXGeneracion(generacion)
 # forma vacio: que vuelva a poner una generacion
 # Maquillar el resultado
 
-"""
+
 def obtenerFormas(forma):
     result = requests.get(f'https://pokeapi.co/api/v2/pokemon-shape/')
     detailPokemon = result.json()
@@ -53,7 +53,7 @@ habilidad = input("Ingresa una habilidad: ")
 print("Eligio la generacion : ", habilidad)
 
 obtenerFormas(habilidad)
-"""
+
 
 # PREGUNTA 3
 
