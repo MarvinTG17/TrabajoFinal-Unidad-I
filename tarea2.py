@@ -1,7 +1,7 @@
 #TAREA 2 
 
 import requests
-#   PREGUNTA 1
+#   PREGUNTA 12 
 
 # generacion > 8 O vacio: que vuelva a poner una generacion
 # Maquillar el resultado
