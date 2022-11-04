@@ -56,10 +56,59 @@ obtenerFormas(habilidad)
 
 
 # PREGUNTA 3
+def obtenerFormas(habilidad):
+    result = requests.get(f'https://pokeapi.co/api/v2/ability/')
+    detailPokemon = result.json()
+    listaFormas=[pokemon['name'] for pokemon in detailPokemon['results']]
+    i=0
+    posicion=0
+    for formas in listaFormas:
+        i+=1
+        if habilidad==formas:
+            posicion=i
+    print(posicion)
+    listaPokemonesXForma=obtenerPokemonesXForma(posicion)
 
+    print(listaPokemonesXForma)
 
+def obtenerPokemonesXForma(posicion):
+    result = requests.get(f'https://pokeapi.co/api/v2/ability/{int(posicion)}/')
+    detailPokemon = result.json()
+    listaPokemones=[pokemon['pokemon']['name'] for pokemon in detailPokemon['pokemon']]
+    print(listaPokemones)
+
+habilidad = input("Ingresa una habilidad: ")
+print("Eligio la habilidad : ", habilidad)
+
+obtenerFormas(habilidad)
 
 # PREGUNTA 4
+def obtenerFormas(forma):
+    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-habitat/')
+    detailPokemon = result.json()
+    listaFormas=[pokemon['name'] for pokemon in detailPokemon['results']]
+    i=0
+    posicion=0
+    for formas in listaFormas:
+        i+=1
+        if forma==formas:
+            posicion=i
+    print(posicion)
+    listaPokemonesXForma=obtenerPokemonesXForma(posicion)
+
+    print(listaPokemonesXForma)
+
+def obtenerPokemonesXForma(posicion):
+    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-habitat/{int(posicion)}/')
+    detailPokemon = result.json()
+    listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
+    print(listaPokemones)
+
+habilidad = input("Ingresa un habitat: ")
+print("Eligio el habitat: ", habilidad)
+
+obtenerFormas(habilidad)
+
 
 # PREGUNTA 5
 
