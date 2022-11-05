@@ -1,94 +1,38 @@
 #TAREA 2 
 
 import requests
-#   PREGUNTA 12 
+import os
+from metodosTarea2 import *
 
-# generacion > 8 O vacio: que vuelva a poner una generacion
-# Maquillar el resultado
+# Variables
+reintentarMenu = True
+generacion = 0
 
-def obtenerPokemonesXGeneracion(generacion):
-    result = requests.get(f'https://pokeapi.co/api/v2/generation/{int(generacion)}/')
-    detailPokemon = result.json()
-    listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
-    print(listaPokemones)
+while reintentarMenu:
+    op = menu_principal()
 
-
-
-generacion = int(input("Ingresa numero de geme: "))
-print("Eligio la generacion : ", str(generacion))
-
-obtenerPokemonesXGeneracion(generacion)
-
-
-
-# PREGUNTA 2
-
-# Sugerir formas
-# forma vacio: que vuelva a poner una generacion
-# Maquillar el resultado
-
-
-def obtenerFormas(forma):
-    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-shape/')
-    detailPokemon = result.json()
-    listaFormas=[pokemon['name'] for pokemon in detailPokemon['results']]
-    i=0
-    posicion=0
-    for formas in listaFormas:
-        i+=1
-        if forma==formas:
-            posicion=i
-    print(posicion)
-    listaPokemonesXForma=obtenerPokemonesXForma(posicion)
-
-    print(listaPokemonesXForma)
-
-def obtenerPokemonesXForma(posicion):
-    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-shape/{int(posicion)}/')
-    detailPokemon = result.json()
-    listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
-    print(listaPokemones)
-
-habilidad = input("Ingresa una habilidad: ")
-print("Eligio la generacion : ", habilidad)
-
-obtenerFormas(habilidad)
-
-
-# PREGUNTA 3
-
-
-
-# PREGUNTA 4
-
-# PREGUNTA 5
-
-
-def obtenerTipos(tipo):
-    result = requests.get(f'https://pokeapi.co/api/v2/type/')
-    detailPokemon = result.json()
-    forma=""
-    listaTipos=[pokemon['name'] for pokemon in detailPokemon['results']]
-    print(listaTipos)
-    i=0
-    posicion=0
-    for tipos in listaTipos:
-        i+=1
-        if tipo==tipos:
-            posicion=i
-    print(posicion)
-    listaPokemonesXTipo=obtenerPokemonesXTipo(posicion)
-
-    print(listaPokemonesXTipo)
-
-def obtenerPokemonesXTipo(posicion):
-    result = requests.get(f'https://pokeapi.co/api/v2/type/{int(posicion)}/')
-    detailPokemon = result.json()
-    listaPokemones=[pokemon['pokemon'] for pokemon in detailPokemon['pokemon']]
-    listaPokemonesTipo=[pokemon['name'] for pokemon in listaPokemones]
-    print(listaPokemonesTipo)
-
-tipo = input("Ingresa un tipo: ")
-print("Eligio el tipo : ", tipo)
-
-obtenerTipos(tipo)
+    if op == "1":
+        generacion = int(input("\nIngrese que generacion de pokemons "))
+        obtenerPokemonesXGeneracion(generacion)
+    elif op == "2":
+        forma = input("\nIngrese la forma de los pokemones.")
+        obtenerFormas(forma)
+    elif op == "3":
+        habilidad = input("\nIngrese la habilidad de los pokemones.")
+        obtenerHabilidades(habilidad)
+    elif op == "4":
+        habitad = input("\nIngrese el habitad de los pokemones.")
+        obtenerHabitad(habitad)
+    elif op == "5":
+        tipo = input("\nIngrese el tipo de los pokemones.")
+        obtenerTipos(tipo)
+    elif op == "0":
+        reintentarMenu = False
+        continue
+    else :
+        reintentarMenu = True
+    time.sleep(2)
+    os.system ("cls") 
+    print("Retornando al menu")
+    time.sleep(2)
+print("Gracias por su participacion")
