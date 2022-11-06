@@ -24,12 +24,12 @@ while True:
     op = menu_principal()
 
     if op == "1":
-        #print("Leer archivo")
+        print("\nLEER LAS 3 PRIMERAS FILAS\n")
         Libro.leerLibros()
-        break
+
     elif op == "2":
-            print("\nLISTAR TODOS LOS LIBROS\n")
-            Libro.listarLibros()
+        print("\nLISTAR TODOS LOS LIBROS\n")
+        Libro.listarLibros()
 
     elif op == "3":
         print("\nAGREGAR UN LIBRO A LA LISTA")
@@ -98,7 +98,7 @@ while True:
             print("\nERROR: opcion erronea o dato vacio.")
 
     elif op == "8":
-        print("Buscar libros por número de autores.")
+        print("NO SE REALIZO, LO SENTIMOS... :c ")
         break
 
     elif op == "9":
