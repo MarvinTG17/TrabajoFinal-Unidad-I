@@ -6,4 +6,5 @@ INTEGRANTES:
 - Taipe Gongora, Marvin
 
 NOTA:
-Para el uso correcto del programa, debera instalar la libreria pandas, colocando el siguiente codigo: pip install pandas
+Para el uso correcto del programa, debera instalar la libreria pandas, colocando el siguiente codigo: pip install pandas.
+Se esta usando las librerias csv, pandas, requests, time.
