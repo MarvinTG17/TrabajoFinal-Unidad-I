@@ -102,17 +102,22 @@ while True:
 
     elif op == "9":
         print("\nEDITAR O ACTUALIZAR DATOS DE UN LIBRO")
-        id        = int(input("\nIngresar un ID del libro a editar: "))
-        titulo    = input("\nIngresar nombre del titulo: ")
-        genero    = input("\nIngresar nombre del genero: ")
-        isbn      = input("\nIngresar el ISBN: ")
-        editorial = input("\nIngresar nombre del editorial: ")
-        autor     = input("\nIngresar nombre del autor: ")
-        if titulo=="" or genero=="" or isbn=="" or editorial=="" or autor=="":
-            print("\nERROR: Ingreso un dato vacio.")
-        else:
-            respta    = Libro(id,titulo,genero,isbn,editorial,autor)
-            respta.editarLibro()
+        id = int(input("\nIngresar un ID del libro a editar: "))
+        verificacion = Libro(id,"","","","","")
+        valor = verificacion.existeIdEditar()
+        if valor == 1:
+            titulo    = input("\nIngresar nombre del titulo: ")
+            genero    = input("\nIngresar nombre del genero: ")
+            isbn      = input("\nIngresar el ISBN: ")
+            editorial = input("\nIngresar nombre del editorial: ")
+            autor     = input("\nIngresar nombre del autor: ")
+            if titulo=="" or genero=="" or isbn=="" or editorial=="" or autor=="":
+                print("\nERROR: Ingreso un dato vacio.")
+            else:
+                respta    = Libro(id,titulo,genero,isbn,editorial,autor)
+                respta.editarLibro()
+        elif valor == 0:
+            print("\nEl ID ingresado no se encuentra en la lista de libros")
 
     elif op == "10":
         print("\nGUARDAR LIBROS EN UN ARCHIVO CSV\n")

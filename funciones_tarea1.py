@@ -100,6 +100,14 @@ class Libro:
             else:
                  print("\nEl dato ingresado no se encuentra en la lista de libros")
 
+    def existeIdEditar(self):
+        datos = pd.read_csv("libros.csv")
+        df = pd.DataFrame(datos)
+        condicion = df["id"]==self.id
+        if condicion.any() == False:
+            return 0
+        else:
+            return 1
 
     def editarLibro(self):
         datos = pd.read_csv("libros.csv")
