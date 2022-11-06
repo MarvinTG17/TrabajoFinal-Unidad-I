@@ -21,3 +21,40 @@ class Libro:
                 if num>2:
                     break
         print("\n")
+
+    def listarLibros():
+        with open("libros.csv") as f:
+            listar = csv.reader(f)
+            next(listar)
+            for i in listar:
+                print("Id:{0}, Titulo:{1}, Genero:{2}, ISBN:{3}, Editorial:{4}, Autores:{5}".format(i[0],i[1],i[2],i[3],i[4],i[5])) 
+    
+
+    def enumerarID():
+        with open("libros.csv") as f:
+            file = list(csv.reader(f))
+            longitud = len(file)-1
+            i = 0 #columna que queremos obtener
+            columna = [fila[i] for fila in file]
+            id = int(columna[longitud])+1
+            return id
+
+    def agregarLibro(self):
+        with open("libros.csv","a",newline='') as f:
+            agregar = csv.writer(f)
+            datos = [self.id,self.titulo,self.genero,self.ISBN,self.editorial,self.autores]
+            agregar.writerow(datos)
+        print("\nSe agrego correctamente a la ultima fila.\n")
+
+    def eliminarLibro(self):
+        with open("libros.csv") as f:
+            data = list(csv.reader(f))
+
+        with open("libros.csv", "w",newline='') as f:
+            writer = csv.writer(f)
+            for row in data:
+                if row[0] != self.id:
+                    writer.writerow(row) 
+
+
+                    
