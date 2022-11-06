@@ -1,4 +1,4 @@
-from funciones_archivo1 import *
+from funcionesTarea1 import *
 import time
 
 def menu_principal():
@@ -98,7 +98,7 @@ while True:
             print("\nERROR: opcion erronea o dato vacio.")
 
     elif op == "8":
-        print("NO SE REALIZO, LO SENTIMOS... :c ")
+        print("\nNO SE REALIZO, LO SENTIMOS... :c \n")
 
     elif op == "9":
         print("\nEDITAR O ACTUALIZAR DATOS DE UN LIBRO")
