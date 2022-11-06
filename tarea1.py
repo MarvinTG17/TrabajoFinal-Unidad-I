@@ -26,3 +26,31 @@ while True:
         #print("Leer archivo")
         Libro.leerLibros()
         break
+    elif op == "2":
+            print("\nLISTAR TODOS LOS LIBROS\n")
+            Libro.listarLibros()
+
+    elif op == "3":
+        print("\nAGREGAR UN LIBRO A LA LISTA")
+        titulo    = input("\nIngresar titulo: ")
+        genero    = input("\nIngresar genero: ")
+        ISBN      = input("\nIngresar ISBN: ")
+        editorial = input("\nIngresar editorial: ")
+        autores   = input("\nIngresar autor: ")
+
+        if titulo=="" or genero=="" or ISBN=="" or editorial=="" or autores=="":
+            print("\nERROR: Ingreso un dato vacio.")
+        else:
+            ide = Libro.enumerarID()
+            resultado = Libro(ide,titulo,genero,ISBN,editorial,autores)
+            resultado.agregarLibro()
+            Libro.listarLibros()
+
+    elif op == "4":
+        print("\nELIMINAR UN LIBRO\n")
+        Libro.listarLibros()
+        id =  input("\nElegir el ID para eliminar un libro completo: ")
+        resp = Libro(id,"","","","","")
+        resp.eliminarLibro()
+        print("\n")
+        Libro.listarLibros()
