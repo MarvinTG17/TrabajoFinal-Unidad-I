@@ -5,5 +5,5 @@ INTEGRANTES:
 - Huanca Champi, Luis Enrique
 - Taipe Gongora, Marvin
 
-NOTES:
-Debera de instalar la libreria pandas con el siguiente codigo: pip install pandas
+NOTA:
+Para el uso correcto del programa, debera instalar la libreria pandas, colocando el siguiente codigo: pip install pandas
