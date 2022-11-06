@@ -1,5 +1,5 @@
 import csv
-
+import pandas as pd
 class Libro:
 
     def __init__(self,id,titulo,genero,ISBN,editorial,autores):
@@ -56,5 +56,24 @@ class Libro:
                 if row[0] != self.id:
                     writer.writerow(row) 
 
-
+    def buscarLibroTI(self):
+        datos = pd.read_csv("libros.csv")
+        df = pd.DataFrame(datos)
+        if self.ISBN:
+            condicion = df["ISBN"]==self.ISBN
+            if condicion.any():
+                print(df[condicion])
+            else:
+                print("\nEl dato ingresado no se encuentra en la lista de libros")
+        elif self.titulo:
+            condicion = df["titulo"]==self.titulo
+            if condicion.any():
+                print(df[condicion])
+            else:
+                print("\nEl dato ingresado no se encuentra en la lista de libros")
+        
+    def ordenarLibro():
+        datos = pd.read_csv("libros.csv")
+        orden = datos.sort_values(by="titulo")
+        print(orden)
                     

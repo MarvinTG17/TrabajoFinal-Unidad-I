@@ -54,3 +54,23 @@ while True:
         resp.eliminarLibro()
         print("\n")
         Libro.listarLibros()
+
+    elif op == "5":
+        print("\nBUSCAR LIBRO POR ISBN O POR TITULO\n")
+        print("Opcion 1 : Buscar por ISBN")
+        print("Opcion 2 : Buscar por titulo")
+        opc = input("\nEscoge el numero de opcion: ")
+        if opc == "1":
+            isbn=input("\nIngresar nombre de ISBN:")
+            rpta = Libro("","","",isbn,"","")
+            rpta.buscarLibroTI()
+        elif opc == "2":
+            titulo=input("\nIngresar nombre de titulo:")
+            rpta = Libro("",titulo,"","","","")
+            rpta.buscarLibroTI()
+        else: 
+            print("\nERROR: opcion erronea o dato vacio.")
+        
+    elif op == "6":
+        print("\nORDENAR LIBROS POR TITULO\n")
+        Libro.ordenarLibro()
