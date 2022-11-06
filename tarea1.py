@@ -1,4 +1,5 @@
 from funciones_archivo1 import *
+import time
 
 def menu_principal():
     print("\n--------MENU DE BIENVENIDA--------")
@@ -74,3 +75,56 @@ while True:
     elif op == "6":
         print("\nORDENAR LIBROS POR TITULO\n")
         Libro.ordenarLibro()
+    
+    elif op == "7":
+        print("\nBUSCAR LIBRO POR AUTOR, EDITORIAL O GENERO\n")
+        print("Opcion 1 : Buscar por genero")
+        print("Opcion 2 : Buscar por editorial")
+        print("Opcion 3 : Buscar por autor")
+        opcion = input("\nEscoge el numero de opcion: ")
+        if opcion == "1":
+            genero=input("\nIngresar nombre de genero:")
+            respt = Libro("","",genero,"","","")
+            respt.buscarLibroGEA()
+        elif opcion == "2":
+            editorial=input("\nIngresar nombre de editorial:")
+            respt = Libro("","","","",editorial,"")
+            respt.buscarLibroGEA()
+        elif opcion == "3":
+            autor=input("\nIngresar nombre de un autor:")
+            respt = Libro("","","","","",autor) 
+            respt.buscarLibroGEA()
+        else: 
+            print("\nERROR: opcion erronea o dato vacio.")
+
+    elif op == "8":
+        print("Buscar libros por número de autores.")
+        break
+
+    elif op == "9":
+        print("\nEDITAR O ACTUALIZAR DATOS DE UN LIBRO")
+        id        = int(input("\nIngresar un ID del libro a editar: "))
+        titulo    = input("\nIngresar nombre del titulo: ")
+        genero    = input("\nIngresar nombre del genero: ")
+        isbn      = input("\nIngresar el ISBN: ")
+        editorial = input("\nIngresar nombre del editorial: ")
+        autor     = input("\nIngresar nombre del autor: ")
+        if titulo=="" or genero=="" or isbn=="" or editorial=="" or autor=="":
+            print("\nERROR: Ingreso un dato vacio.")
+        else:
+            respta    = Libro(id,titulo,genero,isbn,editorial,autor)
+            respta.editarLibro()
+
+    elif op == "10":
+        print("\nGUARDAR LIBROS EN UN ARCHIVO CSV\n")
+        Libro.guardarLibro()
+
+    elif op == "0":
+        print("\nCERRAR EL PROGRAMA....ADIOS.")
+        break
+
+    else:
+        print("\nERROR, opcion erronea o vacio.")
+    
+    print("\nRetornando al menu...3...2...1...")
+    time.sleep(3)

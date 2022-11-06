@@ -76,4 +76,47 @@ class Libro:
         datos = pd.read_csv("libros.csv")
         orden = datos.sort_values(by="titulo")
         print(orden)
+    
+    def buscarLibroGEA(self):
+        datos = pd.read_csv("libros.csv")
+        df = pd.DataFrame(datos) 
+        condicion = []
+        if self.genero:
+            condicion = df.genero.isin([self.genero])
+            if condicion.any():
+                print(df[condicion])
+            else:
+                 print("\nEl dato ingresado no se encuentra en la lista de libros")
+        elif self.editorial:
+            condicion = df.editorial.isin([self.editorial])  
+            if condicion.any():
+                print(df[condicion])
+            else:
+                 print("\nEl dato ingresado no se encuentra en la lista de libros") 
+        elif self.autores:
+            condicion = df.autores.isin([self.autores]) 
+            if condicion.any():
+                print(df[condicion])
+            else:
+                 print("\nEl dato ingresado no se encuentra en la lista de libros")
+
+
+    def editarLibro(self):
+        datos = pd.read_csv("libros.csv")
+        df = pd.DataFrame(datos)
+        condicion = df["id"]==self.id
+        df.loc[condicion, "titulo"]    = self.titulo
+        df.loc[condicion, "genero"]    = self.genero
+        df.loc[condicion, "ISBN"]      = self.ISBN
+        df.loc[condicion, "editorial"] = self.editorial
+        df.loc[condicion, "autores"]   = self.autores
+        df.to_csv("libros.csv",index=None)
+        print("\nEditado correctamente.")
+
+    def guardarLibro():
+        datos = pd.read_csv("libros.csv")
+        df = pd.DataFrame(datos)
+        df.to_csv('LibroExportado.csv',index=None)
+        print("\nSe realizo una copia del archivo libro correctamente")
+        print("con el nombre de LibroExportado")
                     
