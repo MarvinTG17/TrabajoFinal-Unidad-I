@@ -23,11 +23,15 @@ while reintentarMenu:
         habilidad = input()
         listarPokemonesXHabilidad(habilidad, lHabilidades)
     elif op == "4":
-        habitad = input("\nIngrese el habitad de los pokemones.")
-        obtenerHabitad(habitad)
+        lHabitad = obtenerHabitad()
+        print(f'Ingrese el habitad de los pokemones: \nPor jemplo: {lHabitad[0][0]}, {lHabitad[1][0]} o {lHabitad[2][0]}')
+        habitad = input()
+        listarPokemonesXHabitad(habitad, lHabitad)
     elif op == "5":
-        tipo = input("\nIngrese el tipo de los pokemones.")
-        obtenerTipos(tipo)
+        lTipos = obtenerTipos()
+        print(f'Ingrese el tipo de los pokemones: \nPor jemplo: {lTipos[0][0]}, {lTipos[1][0]} o {lTipos[2][0]}')
+        tipo = input()
+        listarPokemonesXTipo(tipo, lTipos)
     elif op == "0":
         reintentarMenu = False
         continue

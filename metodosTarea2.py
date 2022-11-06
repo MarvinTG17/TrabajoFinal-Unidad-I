@@ -152,27 +152,34 @@ def obtenerPokemonesXHabilidad(url):
 
 
 
-# Opcion 4: 
-def obtenerHabitad(habitad):
-    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-habitat/')
-    detailPokemon = result.json()
-    listaHabitads=[pokemon['name'] for pokemon in detailPokemon['results']]
-    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+# Opcion 4: listar por habitad
+
+def listarPokemonesXHabitad(habitad, listaHabitads):
+    #listaHabitads = obtenerHabitad()
     i=0
     posicion=0
     seEncontroHabitad = False
-    for habita in listaHabitads:
-        if habitad==habita:
+    for habit in listaHabitads:
+        if habitad==habit[0]:
             posicion=i
             seEncontroHabitad = True
             break
         i+=1
     
     if(seEncontroHabitad):
-        listaPokemonesXHabitad=obtenerPokemonesXHabitad(listaURL[posicion])
-        imprimirListas(listaPokemonesXHabitad)
+        listaPokemonesXHabitad=obtenerPokemonesXHabitad(listaHabitads[posicion][1])
+        listaNombreHabilidadImagen = obtenerPokemonesXNombreHabilidadImagen(listaPokemonesXHabitad)
+        imprimirListas(listaNombreHabilidadImagen)
     else:
         print(f'No se encontro el habitad: {habitad}, solicitada')
+
+def obtenerHabitad():
+    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-habitat/')
+    detailPokemon = result.json()
+    listaHabitads=[pokemon['name'] for pokemon in detailPokemon['results']]
+    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+    listHabilidades = list(zip(listaHabitads, listaURL))
+    return listHabilidades
 
 def obtenerPokemonesXHabitad(url):
     listaPokemones = []
@@ -180,34 +187,36 @@ def obtenerPokemonesXHabitad(url):
     detailPokemon = result.json()
     listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
     listaPokemonesURL=[pokemon['url'] for pokemon in detailPokemon['pokemon_species']]
-    listaIdPokemones=[obtenerIdPokemon(pokemonURL) for pokemonURL in listaPokemonesURL]
-    listaHabilidades=[obtenerHabilidadesXPokemon(idPokemon) for idPokemon in listaIdPokemones]
-    listaImagenes=[obtenerImagenXPokemon(idPokemon) for idPokemon in listaIdPokemones]
-    listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
-    return listaNombreHabilidadImagen
+    listPokemon = list(zip(listaPokemones, listaPokemonesURL))
+    return listPokemon
 
 # Opcion 5
-def obtenerTipos(tipo):
-    result = requests.get(f'https://pokeapi.co/api/v2/type/')
-    detailPokemon = result.json()
-    listaTipos=[pokemon['name'] for pokemon in detailPokemon['results']]
-    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+
+def listarPokemonesXTipo(tipo, listaTipos):
+    #listaTipos = obtenerTipos()
     i=0
     posicion=0
     seEncontroTipo = False
     for tipos in listaTipos:
-        if tipo==tipos:
+        if tipo==tipos[0]:
             posicion=i
             seEncontroTipo = True
             break
         i+=1
-    print(posicion)
     if(seEncontroTipo):
-        listaPokemonesXTipo=obtenerPokemonesXTipo(listaURL[posicion])
-        imprimirListas(listaPokemonesXTipo)
+        listaPokemonesXTipo=obtenerPokemonesXTipo(listaTipos[posicion][1])
+        listaNombreHabilidadImagen = obtenerPokemonesXNombreHabilidadImagen(listaPokemonesXTipo)
+        imprimirListas(listaNombreHabilidadImagen)
     else:
         print(f'No se encontro el tipo: {tipo}, solicitada')
 
+def obtenerTipos():
+    result = requests.get(f'https://pokeapi.co/api/v2/type/')
+    detailPokemon = result.json()
+    listaTipos=[pokemon['name'] for pokemon in detailPokemon['results']]
+    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+    listTipos = list(zip(listaTipos, listaURL))
+    return listTipos
 
 def obtenerPokemonesXTipo(url):
     listaPokemones = []
@@ -215,8 +224,5 @@ def obtenerPokemonesXTipo(url):
     detailPokemon = result.json()
     listaPokemones=[pokemon['pokemon']['name'] for pokemon in detailPokemon['pokemon']]
     listaPokemonesURL=[pokemon['pokemon']['url'] for pokemon in detailPokemon['pokemon']]
-    listaIdPokemones=[obtenerIdPokemon(pokemonURL) for pokemonURL in listaPokemonesURL]
-    listaHabilidades=[obtenerHabilidadesXPokemon(idPokemon) for idPokemon in listaIdPokemones]
-    listaImagenes=[obtenerImagenXPokemon(idPokemon) for idPokemon in listaIdPokemones]
-    listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
-    return listaNombreHabilidadImagen
+    listPokemon = list(zip(listaPokemones, listaPokemonesURL))
+    return listPokemon
