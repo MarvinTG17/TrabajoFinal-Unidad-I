@@ -129,3 +129,37 @@ def obtenerPokemonesXHabitad(url):
     listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
     return listaNombreHabilidadImagen
 
+# Opcion 5
+def obtenerTipos(tipo):
+    result = requests.get(f'https://pokeapi.co/api/v2/type/')
+    detailPokemon = result.json()
+    listaTipos=[pokemon['name'] for pokemon in detailPokemon['results']]
+    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+    i=0
+    posicion=0
+    seEncontroTipo = False
+    for tipos in listaTipos:
+        if tipo==tipos:
+            posicion=i
+            seEncontroTipo = True
+            break
+        i+=1
+    print(posicion)
+    if(seEncontroTipo):
+        listaPokemonesXTipo=obtenerPokemonesXTipo(listaURL[posicion])
+        imprimirListas(listaPokemonesXTipo)
+    else:
+        print(f'No se encontro el tipo: {tipo}, solicitada')
+
+
+def obtenerPokemonesXTipo(url):
+    listaPokemones = []
+    result = requests.get(f'{url}')
+    detailPokemon = result.json()
+    listaPokemones=[pokemon['pokemon']['name'] for pokemon in detailPokemon['pokemon']]
+    listaPokemonesURL=[pokemon['pokemon']['url'] for pokemon in detailPokemon['pokemon']]
+    listaIdPokemones=[obtenerIdPokemon(pokemonURL) for pokemonURL in listaPokemonesURL]
+    listaHabilidades=[obtenerHabilidadesXPokemon(idPokemon) for idPokemon in listaIdPokemones]
+    listaImagenes=[obtenerImagenXPokemon(idPokemon) for idPokemon in listaIdPokemones]
+    listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
+    return listaNombreHabilidadImagen
