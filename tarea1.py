@@ -1,4 +1,4 @@
-from funcionesTarea1 import *
+from funciones_tarea1 import *
 import time
 
 def menu_principal():
