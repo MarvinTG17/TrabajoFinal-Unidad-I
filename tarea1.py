@@ -99,7 +99,6 @@ while True:
 
     elif op == "8":
         print("NO SE REALIZO, LO SENTIMOS... :c ")
-        break
 
     elif op == "9":
         print("\nEDITAR O ACTUALIZAR DATOS DE UN LIBRO")
