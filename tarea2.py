@@ -10,8 +10,13 @@ while reintentarMenu:
     op = menu_principal()
 
     if op == "1":
-        generacion = int(input("\nIngrese que generacion de pokemons: \nPor jemplo: 1, 2, 3, ...  "))
-        obtenerPokemonesXGeneracion(generacion)
+        generacion = input("\nIngrese que generacion de pokemons: \nPor jemplo: 1, 2, 3, ...  ")
+        try:
+            generacion = int(generacion)
+            obtenerPokemonesXGeneracion(generacion)
+        except ValueError:
+            print("Ingrese un valor numerico por favor.")
+        
     elif op == "2":
         lFormas = obtenerFormas()
         print(f'Ingrese la forma de los pokemones: \nPor jemplo: {lFormas[0][0]}, {lFormas[1][0]} o {lFormas[2][0]}')
