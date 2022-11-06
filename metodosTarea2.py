@@ -94,3 +94,38 @@ def obtenerPokemonesXForma(url):
     listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
     return listaNombreHabilidadImagen
 
+
+# Opcion 4: 
+def obtenerHabitad(habitad):
+    result = requests.get(f'https://pokeapi.co/api/v2/pokemon-habitat/')
+    detailPokemon = result.json()
+    listaHabitads=[pokemon['name'] for pokemon in detailPokemon['results']]
+    listaURL=[pokemon['url'] for pokemon in detailPokemon['results']]
+    i=0
+    posicion=0
+    seEncontroHabitad = False
+    for habita in listaHabitads:
+        if habitad==habita:
+            posicion=i
+            seEncontroHabitad = True
+            break
+        i+=1
+    
+    if(seEncontroHabitad):
+        listaPokemonesXHabitad=obtenerPokemonesXHabitad(listaURL[posicion])
+        imprimirListas(listaPokemonesXHabitad)
+    else:
+        print(f'No se encontro el habitad: {habitad}, solicitada')
+
+def obtenerPokemonesXHabitad(url):
+    listaPokemones = []
+    result = requests.get(f'{url}')
+    detailPokemon = result.json()
+    listaPokemones=[pokemon['name'] for pokemon in detailPokemon['pokemon_species']]
+    listaPokemonesURL=[pokemon['url'] for pokemon in detailPokemon['pokemon_species']]
+    listaIdPokemones=[obtenerIdPokemon(pokemonURL) for pokemonURL in listaPokemonesURL]
+    listaHabilidades=[obtenerHabilidadesXPokemon(idPokemon) for idPokemon in listaIdPokemones]
+    listaImagenes=[obtenerImagenXPokemon(idPokemon) for idPokemon in listaIdPokemones]
+    listaNombreHabilidadImagen = [[listaPokemones[posicion],listaHabilidades[posicion],listaImagenes[posicion]] for posicion in range(len(listaPokemones))]
+    return listaNombreHabilidadImagen
+
