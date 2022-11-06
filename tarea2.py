@@ -1,6 +1,6 @@
 #TAREA 2 
 import requests
-from metodosTarea2 import *
+from funciones_tarea2 import *
 
 # Variables
 reintentarMenu = True
